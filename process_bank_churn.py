@@ -17,7 +17,7 @@ def get_feature_cols(df: pd.DataFrame) -> Tuple[List[str], List[str]]:
     Identifies numeric and categorical columns, excluding 'Surname' and the target 'Exited'.
     """
     # Drop non-predictive or high-cardinality columns as requested
-    cols_to_drop = ['Surname', 'Exited', 'CustomerId', 'id']
+    cols_to_drop = ['Surname', 'Exited', 'CustomerId', 'id', 'RowNumber']
     input_cols = [c for c in df.columns if c not in cols_to_drop]
     
     numeric_cols = df[input_cols].select_dtypes(include=np.number).columns.tolist()
