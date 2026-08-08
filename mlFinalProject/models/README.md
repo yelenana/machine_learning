@@ -6,7 +6,8 @@ retraining:
 - `bow_vectorizer.joblib`, `tfidf_vectorizer.joblib` — fitted vectorizers (needed to transform
   new text the same way before feeding it to any of the BoW/TF-IDF models below)
 - `log_reg_bow.joblib`, `log_reg_tfidf.joblib` — Logistic Regression (Models 1–2)
-- `random_forest_bow.joblib` — Random Forest (Model 3)
+- `random_forest_bow.zip` — Random Forest (Model 3), zipped to fit GitHub's browser upload
+  limit; **unzip it first** to get `random_forest_bow.joblib`
 - `xgboost_bow.joblib` — XGBoost on BoW (Model 4)
 - `log_reg_cosine.joblib` — Logistic Regression on BERT cosine similarity (Model 5)
 - `xgboost_combined.joblib` — XGBoost on BoW + cosine_sim + len_diff (Model 6, best non-BERT
@@ -33,3 +34,14 @@ xgb_combined = joblib.load('models/xgboost_combined.joblib')
 Note: `bow_vectorizer`/`tfidf_vectorizer` use a custom tokenizer function (`tokenize`, from
 `src/utils.py`). It must be importable — i.e. `src/` must be on the Python path — for
 `joblib.load()` to unpickle them correctly.
+
+`random_forest_bow.zip` must be unzipped before loading:
+
+```python
+import zipfile
+
+with zipfile.ZipFile('models/random_forest_bow.zip') as z:
+    z.extractall('models/')
+
+rf_bow = joblib.load('models/random_forest_bow.joblib')
+```
