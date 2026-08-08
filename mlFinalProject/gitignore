@@ -1,0 +1,11 @@
+# Data files (see data/README.md for how to obtain them)
+data/*.zip
+data/*.csv
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# BERT checkpoints saved locally during training
+bert_quora/
